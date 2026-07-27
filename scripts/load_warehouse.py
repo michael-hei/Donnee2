@@ -93,15 +93,23 @@ def load_dim_temps(conn, df: pd.DataFrame) -> dict:
 
 
 def load_fait(conn, df: pd.DataFrame, ville_ids: dict, temps_ids: dict):
-    lignes = []
+    # dict garde la DERNIÈRE valeur rencontrée pour une paire (id_ville, id_temps) :
+    # nécessaire car un point "current" (timestamp précis, ex: 04:45:52) et un
+    # point "history" (pile sur l'heure, ex: 04:00:00) tombent dans la même
+    # heure agrégée -> même id_temps. Sans cette déduplication, PostgreSQL
+    # rejette l'insertion (CardinalityViolation: même clé deux fois dans le lot).
+    lignes_par_cle = {}
     for _, row in df.iterrows():
         t = pd.to_datetime(row["timestamp"], utc=True)
         id_ville = ville_ids[(row["ville"], row["pays"])]
         id_temps = temps_ids[(str(t.date()), t.hour)]
-        lignes.append((
+        cle = (id_ville, id_temps)
+        lignes_par_cle[cle] = (
             id_ville, id_temps, row["aqi"], row["co"], row["no"], row["no2"],
             row["o3"], row["so2"], row["pm2_5"], row["pm10"], row["nh3"],
-        ))
+        )
+
+    lignes = list(lignes_par_cle.values())
 
     with conn.cursor() as cur:
         execute_values(
