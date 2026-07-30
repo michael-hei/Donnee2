@@ -26,9 +26,25 @@ SQL_INIT_PATH = Path(__file__).resolve().parent / "init_warehouse.sql"
 
 
 def get_connection():
-    dsn = os.environ.get("DATABASE_URL")
+    """Lecture forcée du .env pour éviter les conflits de variables d'environnement"""
+    env_path = Path(__file__).resolve().parent.parent / ".env"
+    dsn = None
+
+    if env_path.exists():
+        with open(env_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("DATABASE_URL="):
+                    dsn = line.split("=", 1)[1].strip()
+                    break
+
+    if not dsn:
+        # fallback : variable d'environnement classique (pour GitHub Actions)
+        dsn = os.environ.get("DATABASE_URL")
+
     if not dsn:
         raise RuntimeError("DATABASE_URL manquante (postgresql://user:pass@host:port/db)")
+
     return psycopg2.connect(dsn)
 
 
@@ -93,11 +109,7 @@ def load_dim_temps(conn, df: pd.DataFrame) -> dict:
 
 
 def load_fait(conn, df: pd.DataFrame, ville_ids: dict, temps_ids: dict):
-    # dict garde la DERNIÈRE valeur rencontrée pour une paire (id_ville, id_temps) :
-    # nécessaire car un point "current" (timestamp précis, ex: 04:45:52) et un
-    # point "history" (pile sur l'heure, ex: 04:00:00) tombent dans la même
-    # heure agrégée -> même id_temps. Sans cette déduplication, PostgreSQL
-    # rejette l'insertion (CardinalityViolation: même clé deux fois dans le lot).
+    # dict garde la DERNIÈRE valeur rencontrée pour une paire (id_ville, id_temps)
     lignes_par_cle = {}
     for _, row in df.iterrows():
         t = pd.to_datetime(row["timestamp"], utc=True)
