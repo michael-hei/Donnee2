@@ -44,15 +44,36 @@ Voir `scripts/init_warehouse.sql` pour le DDL complet.
 
 ## Période couverte
 
-_À compléter par le groupe après le premier backfill_ — exécuter
-`scripts/validate_clean.py` affiche automatiquement la période couverte
-et le nombre de lignes par ville.
+Données du **27 février 2026** au **1er août 2026** (mise à jour continue
+via le cron horaire). 3 613 mesures par ville à la dernière exécution de
+`validate_clean.py`, soit 18 065 lignes au total sur les 5 villes.
+
+| Ville | Mesures | Première mesure | Dernière mesure |
+|---|---|---|---|
+| Antananarivo | 3 613 | 2026-02-27 05:00 UTC | en continu |
+| Toamasina | 3 613 | 2026-02-27 05:00 UTC | en continu |
+| Antsirabe | 3 613 | 2026-02-27 05:00 UTC | en continu |
+| Mahajanga | 3 613 | 2026-02-27 05:00 UTC | en continu |
+| Fianarantsoa | 3 613 | 2026-02-27 05:00 UTC | en continu |
+
+Ces chiffres évoluent à chaque run ; relancer `scripts/validate_clean.py`
+pour les valeurs à jour.
 
 ## Trous connus
 
-_À compléter par le groupe_ : lister ici les éventuelles pannes de
-l'API, coupures réseau du runner GitHub Actions, ou villes avec moins
-de points que les autres, avec la date et la raison si connue.
+Les 5 villes ont exactement le même nombre de mesures et les mêmes
+coupures — signe qu'il s'agit de pannes du runner GitHub Actions (ou de
+l'API) plutôt que d'un souci propre à une ville. Coupures d'environ 1h
+autour de minuit UTC, identifiées via `validate_clean.py` :
+
+- 2026-03-01 → 2026-03-02
+- 2026-03-04 → 2026-03-05
+- 2026-04-06 → 2026-04-07
+- 2026-05-11 → 2026-05-12
+- 2026-05-19 → 2026-05-20
+- 2026-07-10 → 2026-07-11
+
+Aucune ville n'accuse de retard par rapport aux autres à ce jour.
 
 ## Connexion à la base (warehouse)
 
