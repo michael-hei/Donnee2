@@ -1,12 +1,4 @@
 """
-Backfill historique : remplit raw/ avec l'historique de chaque ville,
-via l'endpoint 'history' (disponible depuis le 27/11/2020).
-
-Rejouable : relancer ce script ne casse rien, il ajoute simplement de
-nouveaux fichiers raw (la dédup se fait plus tard, dans build_clean.py).
-On découpe la période en tranches de 30 jours pour éviter des réponses
-trop volumineuses et rester loin des limites de l'API.
-
 Usage :
     python scripts/backfill.py --months 12
     python scripts/backfill.py --start 2025-07-01 --end 2026-07-01

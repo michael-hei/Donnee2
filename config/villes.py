@@ -1,7 +1,7 @@
 """
 Liste des villes suivies par le pipeline.
-Ajouter/retirer une ville ici suffit : tous les scripts (collecte,
-backfill, build_clean, load_warehouse) lisent cette liste.
+
+
 """
 
 VILLES = [

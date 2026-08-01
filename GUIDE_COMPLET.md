@@ -48,11 +48,11 @@ sans changer d'outil.
 
 ---
 
-## Étape 2 — Créer la base de données PostgreSQL (outil : Supabase, gratuit)
+## Étape 2 — Créer la base de données PostgreSQL (outil : neon, gratuit)
 
 *Consigne : "DATA WAREHOUSE (base de données)" + "infos de connexion à la base"*
 
-1. Aller sur https://supabase.com et cliquer **Start your project**
+1. Aller sur https://www.neon.com et cliquer **Start your project**
 2. Se connecter avec GitHub (le plus rapide)
 3. **New project** :
    - Name : `aqi-warehouse`
@@ -65,13 +65,13 @@ sans changer d'outil.
    **Project Settings (icône engrenage) → Database → Connection string → URI**
    Elle ressemble à :
    ```
-   postgresql://postgres:[VOTRE-MOT-DE-PASSE]@db.xxxxxxxxxxxx.supabase.co:5432/postgres
+  
    ```
    Remplacez `[VOTRE-MOT-DE-PASSE]` par le mot de passe noté à l'étape 3.
 
-**Pourquoi Supabase plutôt que SQLite local** : SQLite ne serait pas
+**Pourquoi Neon plutôt que SQLite local** : SQLite ne serait pas
 accessible par le correcteur ni par le cours IA1 depuis l'extérieur —
-un des cas explicites de "livrable invérifiable = zéro". Supabase donne
+un des cas explicites de "livrable invérifiable = zéro". Neon donne
 une base Postgres accessible 24h/24 depuis n'importe où, gratuitement.
 
 *(Alternative équivalente : https://neon.tech, même principe si vous préférez.)*
@@ -100,7 +100,7 @@ cp .env.example .env
 Puis éditez `.env` :
 ```
 OWM_API_KEY=votre_cle_ici
-DATABASE_URL=postgresql://postgres:motdepasse@db.xxxxx.supabase.co:5432/postgres
+DATABASE_URL=postgresql://postgres:motdepasse@db.xxxxx.Neon.co:5432/postgres
 ```
 `.env` est déjà dans `.gitignore` — il ne sera jamais committé.
 
