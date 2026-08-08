@@ -1,0 +1,32 @@
+{
+  "ville": "Antsirabe",
+  "pays": "Madagascar",
+  "lat": -19.8659,
+  "lon": 47.0333,
+  "collected_at_utc": "20260808T084154Z",
+  "source": "openweathermap_air_pollution",
+  "api_response": {
+    "coord": {
+      "lon": 47.0333,
+      "lat": -19.8659
+    },
+    "list": [
+      {
+        "main": {
+          "aqi": 1
+        },
+        "components": {
+          "co": 70.99,
+          "no": 0.02,
+          "no2": 0.07,
+          "o3": 58.91,
+          "so2": 0.05,
+          "pm2_5": 1.03,
+          "pm10": 1.75,
+          "nh3": 0.16
+        },
+        "dt": 1786178514
+      }
+    ]
+  }
+}
