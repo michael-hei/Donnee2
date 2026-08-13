@@ -1,0 +1,32 @@
+{
+  "ville": "Mahajanga",
+  "pays": "Madagascar",
+  "lat": -15.7167,
+  "lon": 46.3167,
+  "collected_at_utc": "20260813T061703Z",
+  "source": "openweathermap_air_pollution",
+  "api_response": {
+    "coord": {
+      "lon": 46.3167,
+      "lat": -15.7167
+    },
+    "list": [
+      {
+        "main": {
+          "aqi": 1
+        },
+        "components": {
+          "co": 109.11,
+          "no": 0.04,
+          "no2": 0.2,
+          "o3": 34.27,
+          "so2": 0.05,
+          "pm2_5": 7.01,
+          "pm10": 14.09,
+          "nh3": 0.26
+        },
+        "dt": 1786601823
+      }
+    ]
+  }
+}
