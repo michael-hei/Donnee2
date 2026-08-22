@@ -1,0 +1,32 @@
+{
+  "ville": "Fianarantsoa",
+  "pays": "Madagascar",
+  "lat": -21.4536,
+  "lon": 47.0854,
+  "collected_at_utc": "20260822T034207Z",
+  "source": "openweathermap_air_pollution",
+  "api_response": {
+    "coord": {
+      "lon": 47.0854,
+      "lat": -21.4536
+    },
+    "list": [
+      {
+        "main": {
+          "aqi": 1
+        },
+        "components": {
+          "co": 84.48,
+          "no": 0.01,
+          "no2": 0.4,
+          "o3": 29.55,
+          "so2": 0.05,
+          "pm2_5": 2.17,
+          "pm10": 3.3,
+          "nh3": 0.26
+        },
+        "dt": 1787370127
+      }
+    ]
+  }
+}
