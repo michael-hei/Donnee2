@@ -1,0 +1,32 @@
+{
+  "ville": "Toamasina",
+  "pays": "Madagascar",
+  "lat": -18.1492,
+  "lon": 49.4023,
+  "collected_at_utc": "20260923T034152Z",
+  "source": "openweathermap_air_pollution",
+  "api_response": {
+    "coord": {
+      "lon": 49.4023,
+      "lat": -18.1492
+    },
+    "list": [
+      {
+        "main": {
+          "aqi": 1
+        },
+        "components": {
+          "co": 80.51,
+          "no": 0.03,
+          "no2": 0.38,
+          "o3": 25.82,
+          "so2": 0.1,
+          "pm2_5": 2.19,
+          "pm10": 4.98,
+          "nh3": 0.12
+        },
+        "dt": 1790134912
+      }
+    ]
+  }
+}
